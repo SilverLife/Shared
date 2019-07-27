@@ -7,13 +7,18 @@ namespace Shared
 	class TrackedVariable
 	{
 		T _value;
-		CallbackFunctor&& _callback_functor;
+		CallbackFunctor _callback_functor;
 		
 	public:
-		TrackedVariable(T&& value, CallbackFunctor&& callback_functor)
-			: _value(std::forward<T>(value)),
-			_callback_functor(std::forward<CallbackFunctor>(callback_functor))
+		TrackedVariable() = default;
+		TrackedVariable(T&& value)
+			: _value(std::forward<T>(value))
 		{}
+
+		void SetCallbackFunctor(CallbackFunctor callback_functor)
+		{
+			_callback_functor = callback_functor;
+		}
 
 		void Set(T&& new_value)
 		{

@@ -13,6 +13,7 @@ namespace Shared
 	{
 		class Form
 		{
+			static const int kMaxLabels = 20;
 		public:
 			using FormSize = Shared::Geometry::RectangleSize<short>;
 
@@ -33,6 +34,7 @@ namespace Shared
 				: _position(position),
 				  _size(size)
 			{
+				_labels.reserve(kMaxLabels);
 				DrawBorder();
 			}
 
@@ -47,6 +49,10 @@ namespace Shared
 
 			Label& AddLabel(Point position_offset)
 			{
+				if (_labels.size() > kMaxLabels)
+				{
+					throw std::logic_error("Max labels in from reacehd");
+				}
 				_labels.emplace_back(_position + position_offset);
 				return _labels.back();
 			}

@@ -35,5 +35,24 @@ namespace Shared
 				Shared::ConsoleHelper::Console().PrintString(_position, _text);
 			}
 		};
+
+		template <class T>
+		class LabelWrapper
+		{
+			Label* _label = nullptr;
+			std::string _prefix;
+
+		public:
+			LabelWrapper() = default;
+			LabelWrapper(Label* label, std::string prefix)
+			: _label(label),
+			  _prefix(std::move(prefix))
+			{}
+
+			void operator()(const T& value)
+			{
+				_label->SetText(_prefix + std::to_string(value));
+			}
+		};
 	}
 }

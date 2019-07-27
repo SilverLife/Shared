@@ -50,12 +50,12 @@ namespace Shared
 				SetConsoleCursorInfo(_console_handle, &info);
 			}
 
+		public:
 			void SetPosition(short x, short y)
 			{
 				SetConsoleCursorPosition(_console_handle, { x, y });
 			}
 
-		public:
 			ConsoleHelper(const ConsoleHelper&) = delete;
 
 			static ConsoleHelper& Get()
