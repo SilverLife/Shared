@@ -148,16 +148,6 @@ namespace Shared
 			void FindNextPoints(Point start_point, const std::vector<Point>& end_points, std::vector<Point>& o_next_points)
 			{
 				Find(start_point, end_points, o_next_points);
-
-				for (short i = 0; i < _field_marks.Size()._height; i++)
-				{
-					Shared::ConsoleHelper::Console().SetPosition(22, i + 1);
-					for (short j = 0; j < _field_marks.Size()._width; j++)
-					{
-						std::cout << std::setw(4) << _field_marks.Object({ j,i }) << ' ';
-					}
-				}
-				std::cout.flush();
 			}
 		};
 	}
