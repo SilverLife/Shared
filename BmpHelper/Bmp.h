@@ -30,6 +30,18 @@ namespace Shared
 
 		}
 
+		static bool operator>(const PixelColor& p1, const PixelColor& p2)
+		{
+			return p1.r > p2.r && p1.g > p2.g && p1.b > p2.b;
+
+		}
+
+		static bool operator<(const PixelColor& p1, const PixelColor& p2)
+		{
+			return p1.r < p2.r && p1.g < p2.g && p1.b < p2.b;
+
+		}
+
 		namespace PixelColors
 		{
 			static const Shared::BmpHelper::PixelColor Black{ 0,   0, 0 };
