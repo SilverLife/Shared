@@ -1,3 +1,4 @@
+п»ї// в• РџСЂРёРІРµС‚
 #pragma once
 #include <cstdint>
 
@@ -5,7 +6,7 @@ namespace Shared
 {
 	namespace CommonStructs
 	{
-		// Класс, который просто на каждый _ticks_to_action вызов PerformTick() выдает true
+		// РљР»Р°СЃСЃ, РєРѕС‚РѕСЂС‹Р№ РїСЂРѕСЃС‚Рѕ РЅР° РєР°Р¶РґС‹Р№ _ticks_to_action РІС‹Р·РѕРІ PerformTick() РІС‹РґР°РµС‚ true
 		template <class TickType>
 		class Ticker
 		{
