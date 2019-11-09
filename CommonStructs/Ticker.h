@@ -38,9 +38,9 @@ namespace Shared
 			TickType TicksToAction() const { return _ticks_to_action; }
 		};
 
-		using TickerByte = Ticker<uint8_t>;
+		using TickerByte  = Ticker<uint8_t>;
 		using TickerShort = Ticker<uint16_t>;
-		using TickerInt = Ticker<uint32_t>;
-		using TickerLong = Ticker<uint64_t>;
+		using TickerInt   = Ticker<uint32_t>;
+		using TickerLong  = Ticker<uint64_t>;
 	}
 }
