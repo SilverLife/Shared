@@ -42,7 +42,7 @@ namespace Shared
 				return !(operator==(rhs));
 			}
 
-			double Norma() const { return sqrt(_x*_x + _y * _y); }
+			double Norma() const { return sqrt(_x*_x + _y*_y); }
 		};
 	}
 }
