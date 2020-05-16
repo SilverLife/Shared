@@ -14,6 +14,8 @@ namespace Shared
 		template <class T, size_t kMaxSize = 10>
 		class StaticVector
 		{
+			using SelfType = StaticVector<T, kMaxSize>;
+
 			std::byte _data[kMaxSize * sizeof(T)];
 			size_t _size = 0;
 
@@ -47,6 +49,11 @@ namespace Shared
 			const T& GetElem(size_t i) const
 			{
 				return *reinterpret_cast<const T*>(&_data[i * sizeof(T)]);
+			}
+
+			T& GetElem(size_t i) 
+			{
+				return *reinterpret_cast<T*>(&_data[i * sizeof(T)]);
 			}
 
 		public:
@@ -96,6 +103,8 @@ namespace Shared
 
 			size_t size() const { return _size; }
 			size_t capacity() const { return kMaxSize; }
+
+			void reserve(int n) {}
 
 			void clear()
 			{
@@ -162,7 +171,35 @@ namespace Shared
 				std::cout << std::endl;
 			}
 
+			const T& operator[](int i) const { return GetElem(i); }
+			T& operator[](int i) { return GetElem(i);}
 
+			//==============//
+			class Iterator
+			{
+				SelfType* _static_vector;
+				int _index = 0;
+			public:
+				Iterator(SelfType* static_vector, int index)
+				: _static_vector(static_vector),
+				  _index(index)
+				{}
+
+				void operator++() { _index++; }
+
+				T& operator*() const { return (*_static_vector)[_index]; }
+
+				bool operator==(Iterator rhs_it)
+				{
+					return _static_vector == rhs_it._static_vector && _index == rhs_it._index;
+				}
+
+				bool operator!=(Iterator rhs_it) { return !(operator==(rhs_it)); }
+			};
+
+			Iterator begin()  { return Iterator(this, 0); }
+			Iterator end()  { return Iterator(this, _size); }
+			
 		};
 
 
