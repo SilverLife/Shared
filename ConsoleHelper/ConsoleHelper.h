@@ -62,6 +62,17 @@ namespace Shared
 				SetConsoleCursorPosition(_console_handle, { x, y });
 			}
 
+			void SetConsolePositionAndSize(short l, short t, short w, short h)
+			{
+				HWND hwnd = GetConsoleWindow();
+				RECT rect = { l, t, l + w, t + h };
+				MoveWindow(hwnd, rect.top, rect.left, rect.bottom - rect.top, rect.right - rect.left, TRUE);
+
+				//SetConsoleScreenBufferSize(_console_handle, { w,h });
+				//SMALL_RECT size{ w - 1, h - 1 };
+				//SetConsoleWindowInfo(_console_handle, TRUE, &size);
+			}
+
 			ConsoleHelper(const ConsoleHelper&) = delete;
 
 			static ConsoleHelper& Get()
@@ -82,6 +93,7 @@ namespace Shared
 				else
 				{
 					printf("Error: %d\n", GetLastError());
+					return { 0, 0 };
 				}
 			}
 

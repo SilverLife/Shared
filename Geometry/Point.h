@@ -41,6 +41,13 @@ namespace Shared
 			{
 				return !(operator==(rhs));
 			}
+
+			Point operator-() const 
+			{
+				return { _x * -1, _y * -1 };
+			}
+
+			double Norma() const { return sqrt(_x*_x + _y*_y); }
 		};
 	}
 }
