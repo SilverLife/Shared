@@ -39,6 +39,12 @@ namespace Shared
 			Yellow = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY,
 		};
 
+		struct ColoredChar
+		{
+			char _char;
+			Color _color;
+		};
+
 		class ConsoleHelper {
 			HANDLE _console_handle;
 			CONSOLE_CURSOR_INFO info;
