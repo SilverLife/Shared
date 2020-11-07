@@ -12,19 +12,19 @@ namespace EventGameEngine
 						       // Для пассивного - пускать ли на свое место активного
 		};
 
-		bool IsDead(int intersection_result)
+		static bool IsDead(int intersection_result)
 		{
 			return intersection_result & IntersectResult::IntResIsDead;
 		}
-		bool IsAlive(int intersection_result)
+		static bool IsAlive(int intersection_result)
 		{
 			return (intersection_result & IntersectResult::IntResIsDead) == 0;
 		}
-		bool IsMove(int intersection_result)
+		static bool IsMove(int intersection_result)
 		{
 			return intersection_result & IntersectResult::IntResIsMove;
 		}
-		bool IsNotMove(int intersection_result)
+		static bool IsNotMove(int intersection_result)
 		{
 			return (intersection_result & IntersectResult::IntResIsMove) == 0;
 		}
