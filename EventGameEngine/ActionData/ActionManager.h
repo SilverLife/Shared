@@ -102,7 +102,7 @@ namespace EventGameEngine
 				_tick_subscribers.push_back(field_object);
 			}
 
-			void SubscribeToEvent(FieldData::FieldObject* field_object, EventData::EventTypeInt event_type)
+			void SubscribeToCustomEvent(FieldData::FieldObject* field_object, EventData::EventTypeInt event_type)
 			{
 				_custom_event_subscribers[static_cast<int>(event_type)].push_back(field_object);
 			}
