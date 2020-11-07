@@ -12,39 +12,34 @@ namespace EventGameEngine
 
 	namespace EventData
 	{
-		enum class EventType
-		{
-			Move = 0,
-			FreezeEnemies = 1,
-			EnemySpeedIncrease = 2,
-			AddObject = 3,
-			GameOver,
-			Win,
-			RemoveObject,
+		using EventTypeInt = int;
 
-			EventsCount
+		enum ActionEventType : EventTypeInt
+		{
+			AddObject,
+			RemoveObject,
+			MoveObject,
+			Win,
+			GameOver
+		};
+
+		enum class EventGroup
+		{
+			Action,
+			Custom
 		};
 
 		struct Event
 		{
-			EventType _type;
+			EventTypeInt _type;
+			EventGroup _group;
 
-			Event(EventType type) : _type(type) {}
-			virtual ~Event() = default;
-		};
-
-		// ============= //
-
-		struct EventMove : Event
-		{
-			Point _src_pos;
-			Point _dst_pos;
-
-			EventMove(Point src_pos, Point dst_pos)
-				: Event(EventType::Move)
-				, _src_pos(src_pos)
-				, _dst_pos(dst_pos)
+			Event(EventTypeInt type, EventGroup group = EventGroup::Action) 
+				: _type(type) 
+				, _group(group)
 			{}
+
+			virtual ~Event() = default;
 		};
 
 		struct EventAddObject : Event
@@ -53,7 +48,7 @@ namespace EventGameEngine
 			FieldData::FieldObject* _object;
 
 			EventAddObject(Point pos, FieldData::FieldObject* object)
-				: Event(EventType::AddObject)
+				: Event(ActionEventType::AddObject, EventGroup::Action)
 				, _pos(pos)
 				, _object(object)
 			{}
@@ -64,8 +59,20 @@ namespace EventGameEngine
 			Point _pos;
 
 			EventRemoveObject(Point pos)
-				: Event(EventType::RemoveObject)
+				: Event(ActionEventType::RemoveObject, EventGroup::Action)
 				, _pos(pos)
+			{}
+		};
+
+		struct EventMoveObject : Event
+		{
+			Point _src_pos;
+			Point _dst_pos;
+
+			EventMoveObject(Point src_pos, Point dst_pos)
+				: Event(ActionEventType::MoveObject, EventGroup::Action)
+				, _src_pos(src_pos)
+				, _dst_pos(dst_pos)
 			{}
 		};
 	}
