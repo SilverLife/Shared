@@ -11,11 +11,11 @@ namespace EventGameEngine
 	{
 		class FieldObject
 		{
-			char _draw_symbol = ' ';
+			unsigned char _draw_symbol = ' ';
 			Shared::ConsoleHelper::Color _color;
 		public:
 			FieldObject() = default;
-			FieldObject(char draw_symbol, Shared::ConsoleHelper::Color color = Shared::ConsoleHelper::Color::White) 
+			FieldObject(unsigned char draw_symbol, Shared::ConsoleHelper::Color color = Shared::ConsoleHelper::Color::White) 
 				: _draw_symbol(draw_symbol) 
 				, _color(color)
 			{}
@@ -47,8 +47,8 @@ namespace EventGameEngine
 			
 			// Вызывается когда один объект (Active) при движении пересекается с другим объектом (Passive)
 			// По умолчанию при пересечении все выживают и никто никуда не двигается
-			virtual int OnActiveIntersect(FieldObject* intersected_object) { return 0; }
-			virtual int OnPassiveIntersect(FieldObject* intersected_object) { return 0; }
+			virtual int  OnActiveIntersect(Point active_pos, Point passive_pos, FieldObject* intersected_object) { return 0; }
+			virtual int OnPassiveIntersect(Point active_pos, Point passive_pos, FieldObject* intersected_object) { return 0; }
 
 			// Вызывается, когда поле решает, что объект надо уничтожить
 			virtual void OnRemove() {}

@@ -113,8 +113,8 @@ namespace EventGameEngine
 					return;
 				}
 
-				const auto src_intersect_result = src_object->OnActiveIntersect(dst_object);
-				const auto dst_intersect_result = dst_object->OnPassiveIntersect(src_object);
+				const auto src_intersect_result = src_object->OnActiveIntersect(src_pos, dst_pos, dst_object);
+				const auto dst_intersect_result = dst_object->OnPassiveIntersect(src_pos, dst_pos, src_object);
 
 				/* Варианты действий при пересечении 2х объектов (s,d)
 				* 1. Все остаются на месте

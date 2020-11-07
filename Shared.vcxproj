@@ -18,6 +18,12 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="EventGameEngine\FieldData\Field.h" />
+    <ClInclude Include="EventGameEngine\FieldData\FieldObject.h" />
+    <ClInclude Include="EventGameEngine\FieldData\FieldObjectWithPos.h" />
+    <ClInclude Include="EventGameEngine\FieldData\IntersectionResult.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{CF7CEB5C-E81A-4E0F-9401-AA0DE7AC3AFB}</ProjectGuid>
